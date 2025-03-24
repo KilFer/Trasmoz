@@ -1,0 +1,29 @@
+* {
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font: 400 20px/1.6 $text-font-family;
+  background: $background-color;
+  color: $text-color;
+  transition: color .4s, background-color .4s;
+
+  @include breakpoint(small) {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+}
+
+// Dark
+body.dark-theme {
+  background: $dark-background-color;
+  color: $dark-text-color;
+  transition: color .4s, background-color .4s;
+
+}

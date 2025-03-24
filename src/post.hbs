@@ -1,0 +1,167 @@
+{{!< default}}
+
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post {{post_class}}">
+      {{#post}}
+        <section class="post-container">
+          <header class="post-header">
+            <h1 itemprop="name headline" class="post-title"><a href="{{url}}" itemprop="url" data-pjax title="{{{title}}}">{{{title}}}</a></h1>
+            {{#if custom_excerpt}}
+              <h2 itemprop="about" class="post-subtitle">{{custom_excerpt}}</h2>
+            {{/if}}
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="{{date published_at format="YYYY-MM-DD"}}" itemprop="datePublished">
+                  {{date published_at timeago="true"}}
+                </time>
+              </li>
+              {{#if tags}}
+                <li class="post-meta-item"> Tags:
+                  {{#foreach tags}}
+                    <a itemprop="{{#if @first}}articleSection{{else}}keywords{{/if}}" href="{{url}}" data-pjax>
+                      {{#match name "Domótica"}}
+                        <i class="fa-solid fa-house-user"></i>
+                      {{/match}}
+                      {{#match name "News"}}
+                        <i class="fa-solid fa-newspaper"></i>
+                      {{/match}}
+                      {{#match name "Personal"}}
+                        <i class="fa-solid fa-circle-user"></i>
+                      {{/match}}
+                      {{#match name "Podcast"}}
+                        <i class="fa-solid fa-microphone-lines"></i>
+                      {{/match}}
+                      {{name}}
+                    </a>
+                    {{~#if @last}} {{else}}, {{/if}}
+                  {{/foreach}}
+                </li>
+              {{/if}}
+              <li class="post-meta-item"> Tiempo de lectura: <span id="time"></span> minutos</li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="{{comment_id}}">Comments</a>
+              </li>
+            </ul>
+            {{#if feature_image}}
+              <figure class="gh-article-image">
+                {{!-- This is a responsive image, it loads different sizes depending on device
+                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                <img
+                  srcset="{{img_url feature_image size="s"}} 300w,
+                                {{img_url feature_image size="m"}} 600w,
+                                {{img_url feature_image size="l"}} 1000w,
+                                {{img_url feature_image size="xl"}} 2000w"
+                  sizes="(min-width: 1400px) 1400px, 92vw"
+                  src="{{img_url feature_image size="xl"}}"
+                  alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                />
+                {{#if feature_image_caption}}
+                  <figcaption>{{feature_image_caption}}</figcaption>
+                {{/if}}
+              </figure>
+            {{/if}}
+          </header>
+          <aside class="post-side">
+            <div class="post-author" id="post-site-info">
+              {{#if @site.logo}}
+                <a href="{{@site.url}}" class="cover-logo" data-pjax>
+                  <img src="{{@site.logo}}" alt="Blog Logo">
+                </a>
+              {{/if}}
+              <a href="{{@site.url}}" class="cover-logo" data-pjax>
+                <p class="post-site-title">{{@site.title}}</p>
+              </a>
+              <p class="post-site-desc">{{@site.description}}</p>
+            </div>
+            <div class="beat-time" id="beat-time-div" style="visibility: hidden;">
+              Beat Time: <a id="beat-time" href="https://beats.wiki">@000</a>&emsp;<a href=""><i class="fa-solid fa-circle-info"></i> ¿Que es esto?</a>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body" id="articleBody">
+            {{content}}
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+              {{#if primary_author.profile_image}}
+                <a href="{{primary_author.website}}" class="post-author-avatar">
+                  <img itemprop="image" src="{{primary_author.profile_image}}" alt="{{primary_author.name}}">
+                </a>
+              {{/if}}
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Escrito por</h4>
+                <a href="{{primary_author.website}}" itemprop="url" class="post-author-name">
+                  <span itemprop="name">{{primary_author.name}}</span>
+                </a>
+                <p itemprop="description" class="post-author-bio">{{primary_author.bio}}</p>
+                {{#if primary_author.location}}
+                  <p class="post-author-location">{{primary_author.location}}</p>
+                {{/if}}
+                {{#if primary_author.website}}
+                  <p class="post-author-website">
+                    <a href="{{primary_author.website}}" rel="nofollow">{{primary_author.website}}</a>
+                  </p>
+                {{/if}}
+                <p class="post-info">
+                  <b class="post-info-title">Publicado el</b>
+                  <time class="post-date">{{date format='ddd[ ]DD[ de ]MMM[ de ]YYYY'}}</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa-brands fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-mastodon"><i class="fa-brands fa-fw fa-lg fa-mastodon"></i></a>
+              <a href="#" data-action="share-bluesky"><i class="fa-brands fa-fw fa-lg fa-bluesky"></i></a>
+            </div>
+          </footer>
+        </section>
+      {{/post}}
+      <section itemprop="comment" class="post-comments">
+        {{comments}}
+        <div id="disqus_thread"></div>
+        <div id="isso-thread"></div>
+        <div id="bluesky-comments"></div>
+        <script type="module">
+          if (GHOSTIUM.haveBluesky) {
+            import blueskyComments from 'https://unpkg.com/bluesky-comments@0.5.1/dist/bluesky-comments.es.js';
+            document.addEventListener('DOMContentLoaded', function () {
+              const author = GHOSTIUM.blueskyShortName;
+              if (author) {
+                blueskyComments.init('bluesky-comments', {author});
+              }
+            });
+          }
+        </script>
+      </section>
+    </article>
+
+    {{> footer this}}
+  </div>
+</section>
+
+<script type="text/javascript">
+  if(GHOSTIUM.haveDisqus) {
+    {{#post}}
+    var disqus_identifier = '{{comment_id}}';
+    {{/post}}
+
+    if(typeof DISQUS !== 'object') {
+      (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    }
+  } else if (!GHOSTIUM.haveBluesky) {
+     document.querySelector('.post-comments').remove();
+  }
+  function readingTime() {
+    const text = document.getElementById("articleBody").innerText;
+    const wpm = 200;
+    const words = text.trim().split(/\s+/).length;
+    document.getElementById("time").innerText = Math.ceil(words / wpm);
+  }
+  readingTime();
+</script>

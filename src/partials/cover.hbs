@@ -1,0 +1,12 @@
+<aside role="banner" class="cover">
+  <div {{#if @site.cover_image}}data-load-image="{{@site.cover_image}}"{{/if}} class="cover-image"></div>
+  <div class="cover-container">
+    {{#if @site.logo}}
+      <a href="{{@site.url}}" class="cover-logo" data-pjax>
+        <img src="{{@site.logo}}" alt="Blog Logo">
+      </a>
+    {{/if}}
+    <h1 class="cover-title">{{@site.title}}</h1>
+    <p class="cover-description">{{@site.description}}</p>
+  </div>
+</aside>

@@ -1,0 +1,64 @@
+{
+  "name": "trasmoz",
+  "version": "0.9.0",
+  "description": "A ghost theme (based on Ghostium) focused on content",
+  "url": "https://fernando.belaza.eu/blog/",
+  "copyright": "2025",
+  "license": "MIT",
+  "author": {
+    "name": "Fernando Belaza",
+    "email": "fernando@belaza.eu",
+    "url": "https://fernando.belaza.eu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:KilFer/trasmoz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KilFer/trasmoz/issues"
+  },
+  "keywords": [
+    "ghost",
+    "blog",
+    "theme",
+    "medium"
+  ],
+  "dependencies": {
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^11.0.1"
+  },
+  "devDependencies": {
+    "bower": "^1.8.2",
+    "grunt": "~1.0.1",
+    "grunt-autoprefixer": "~3.0.4",
+    "grunt-cli": "^1.5.0",
+    "grunt-contrib-clean": "~1.1.0",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-csslint": "~2.0.0",
+    "grunt-contrib-cssmin": "~2.2.0",
+    "grunt-contrib-imagemin": "~2.0.1",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-sass": "~1.0.0",
+    "grunt-contrib-uglify": "~3.3.0",
+    "grunt-conventional-changelog": "~6.1.0",
+    "grunt-csscss": "~0.6.1",
+    "grunt-csso": "~2.2.0",
+    "grunt-push-release": "~0.1.9",
+    "grunt-svgmin": "~5.0.0",
+    "grunt-text-replace": "~0.4.0",
+    "grunt-usemin": "~3.1.1",
+    "matchdep": "~2.0.0"
+  },
+  "engines": {
+    "node": ">=8.9"
+  },
+  "scripts": {
+    "test": "grunt --verbose",
+    "postinstall": "bundle install && bower install",
+    "build": "grunt build",
+    "zip": "rm gen_zips/last_trasmoz.zip; cd build; zip -r ../gen_zips/last_trasmoz.zip ./* ; cd ..; zip -ur gen_zips/last_trasmoz.zip favicon.ico package.json package-lock.json; trasmozname=$(date +'%Y%m%d-%H%M'); cp gen_zips/last_trasmoz.zip gen_zips/trasmoz-${trasmozname}.zip; echo $trasmozname .zip",
+    "buildzip": "grunt build; rm gen_zips/last_trasmoz.zip; cd build; zip -r ../gen_zips/last_trasmoz.zip ./* ; cd ..; zip -ur gen_zips/last_trasmoz.zip favicon.ico package.json package-lock.json; trasmozname=$(date +'%Y%m%d-%H%M'); cp gen_zips/last_trasmoz.zip gen_zips/trasmoz-${trasmozname}.zip; echo $trasmozname .zip"
+  }
+}

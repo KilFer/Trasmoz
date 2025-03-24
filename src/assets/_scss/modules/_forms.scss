@@ -1,0 +1,125 @@
+label {
+  font-family: $input-font-family;
+  font-size: 1rem;
+}
+
+fieldset {
+  border: 0;
+  margin-bottom: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="week"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select,
+textarea {
+  @extend label;
+
+  display: inline-block;
+  background-color: $input-background-color;
+  color: $input-text-color;
+  padding: .2rem .3rem;
+  margin-bottom: 5px;
+  line-height: normal;
+  border: 0;
+  transition: all .3s linear;
+
+  &:focus {
+    outline: 0;
+    background-color: darken($input-background-color, 5%);
+  }
+
+  &::-webkit-input-placeholder,
+  &:-moz-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder {
+    color: $input-placeholder-color;
+    font-style: italic;
+  }
+
+  &[disabled],
+  &[readonly] {
+    font-style: italic;
+    color: darken($input-background-color, 15%);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    &:focus {
+      background-color: $input-background-color;
+    }
+  }
+}
+
+button[type="submit"],
+button[type="reset"],
+input[type="submit"],
+input[type="reset"] {
+  @extend .btn;
+}
+
+button[type="submit"],
+input[type="submit"]{
+  @extend .btn-primary;
+}
+
+// Dark
+body.dark-theme input[type="text"],
+body.dark-theme input[type="password"],
+body.dark-theme input[type="email"],
+body.dark-theme input[type="url"],
+body.dark-theme input[type="date"],
+body.dark-theme input[type="month"],
+body.dark-theme input[type="time"],
+body.dark-theme input[type="datetime"],
+body.dark-theme input[type="datetime-local"],
+body.dark-theme input[type="week"],
+body.dark-theme input[type="number"],
+body.dark-theme input[type="search"],
+body.dark-theme input[type="tel"],
+body.dark-theme input[type="color"],
+body.dark-theme select,
+body.dark-theme textarea {
+  @extend label;
+
+  background-color: $input-dark-background-color;
+  color: $input-dark-text-color;
+  transition: color .4s, background-color .4s;
+
+  &:focus {
+    background-color: lighten($input-dark-background-color, 5%);
+    transition: background-color .4s;
+  }
+
+  &::-webkit-input-placeholder,
+  &:-moz-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder {
+    color: $input-dark-placeholder-color;
+    transition: color .4s;
+  }
+
+  &[disabled],
+  &[readonly] {
+    color: lighten($input-dark-background-color, 15%);
+    transition: color .4s;
+  }
+
+  &[disabled] {
+    &:focus {
+      background-color: $input-dark-background-color;
+      transition: background-color .4s;
+    }
+  }
+}

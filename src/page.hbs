@@ -1,0 +1,60 @@
+{{!< default}}
+
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post {{post_class}}">
+      {{#post}}
+        <section class="post-container">
+          {{#match @page.show_title_and_feature_image}}
+            <header class="post-header">
+              <h1 itemprop="name headline" class="post-title"><a href="{{url}}" itemprop="url" data-pjax title="{{{title}}}">{{{title}}}</a></h1>
+            </header>
+          {{/match}}
+          <aside class="post-side">
+            <div class="post-author" id="post-site-info">
+              {{#if @site.logo}}
+                <a href="{{@site.url}}" class="cover-logo" data-pjax>
+                  <img src="{{@site.logo}}" alt="Blog Logo">
+                </a>
+              {{/if}}
+              <a href="{{@site.url}}" class="cover-logo" data-pjax>
+                <p class="post-site-title">{{@site.title}}</p>
+              </a>
+              <p class="post-site-desc">{{@site.description}}</p>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+                {{#if feature_image}}
+                    <img src="{{img_url feature_image}}">
+                {{/if}}
+            {{content}}
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+              {{#if primary_author.profile_image}}
+                <a href="{{primary_author.website}}" class="post-author-avatar">
+                  <img itemprop="image" src="{{primary_author.profile_image}}" alt="{{primary_author.name}}">
+                </a>
+              {{/if}}
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="{{primary_author.website}}" itemprop="url" class="post-author-name">
+                  <span itemprop="name">{{primary_author.name}}</span>
+                </a>
+                <p itemprop="description" class="post-author-bio">{{primary_author.bio}}</p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa-brands fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-mastodon"><i class="fa-brands fa-fw fa-lg fa-mastodon"></i></a>
+              <a href="#" data-action="share-bluesky"><i class="fa-brands fa-fw fa-lg fa-bluesky"></i></a>
+            </div>
+          </footer>
+        </section>
+      {{/post}}
+    </article>
+
+    {{> footer this}}
+  </div>
+</section>

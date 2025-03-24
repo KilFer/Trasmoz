@@ -1,0 +1,137 @@
+{{! Templates
+
+Link
+==============
+<li class="drawer-list-item">
+  <a href="#" title="Follow me on twitter!">
+    <i class="fa-brands fa-twitter"></i> Follow me
+  </a>
+</li>
+
+Divider
+==============
+<li class="drawer-list-divider"></li>
+
+Title
+==============
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+ProTip:
+==============
+Ghostium uses Font Awesome you can find all icons available on the url below
+  http://fontawesome.github.io/Font-Awesome/cheatsheet/
+
+}}
+
+<li class="drawer-list-item">
+  <a href="/" data-pjax>
+    <i class="fa-solid fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="{{@site.url}}/about/">
+    <i class="fa-solid fa-circle-user"></i>Sobre mí
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="{{@site.url}}/rss/">
+    <i class="fa-solid fa-rss"></i>RSS
+  </a>
+</li>
+
+{{#if navigation}}
+  <li class="drawer-list-divider"></li>
+  <li class="drawer-list-item drawer-list-title">
+    Secciones
+  </li>
+  {{#foreach navigation}}
+    <li class="drawer-list-item nav-{{slug}}">
+      <a href="{{url absolute="true"}}">
+        <i class="{{#if current}}fa-solid fa-circle-right{{else}}fa-regular fa-circle-right{{/if}}"></i> {{label}}
+      </a>
+    </li>
+  {{/foreach}}
+{{/if}}
+
+<li class="drawer-list-divider"></li>
+
+<li class="drawer-list-item drawer-list-title">
+  Tags
+</li>
+<li class="drawer-list-item">
+  <a href="{{@site.url}}/tag/personal/" target="_blank">
+    <i class="fa-solid fa-tag"></i>Personal
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="{{@site.url}}/tag/news/" target="_blank">
+    <i class="fa-solid fa-tag"></i>News
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="{{@site.url}}/tag/domotica/" target="_blank">
+    <i class="fa-solid fa-tag"></i>Domotica
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="{{@site.url}}/tag/podcast/" target="_blank">
+    <i class="fa-solid fa-tag"></i>Podcast
+  </a>
+</li>
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Sígueme
+</li>
+<li class="drawer-list-item">
+  <a href="https://bsky.app/profile/fernando.belaza.eu" target="_blank">
+    <i class="fa-brands fa-bluesky"></i>Bluesky
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://masto.es/@FBelaza" target="_blank">
+    <i class="fa-brands fa-mastodon"></i>Mastodon
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://instagram.com/kilfer.zgz" target="_blank">
+    <i class="fa-brands fa-instagram"></i>Instagram (Personal)
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://instagram.com/nihondenotoshi" target="_blank">
+    <i class="fa-brands fa-instagram"></i>Instagram (Fotografía)
+  </a>
+</li>
+<li class="drawer-list-divider"></li>
+<!-- DARK MODE-->
+<div class="drawer-bottom">
+  <li class="drawer-list-item">
+    <a id="btn-toggle-dark-theme" style="cursor: pointer">
+      <i class="fa-solid fa-circle-half-stroke"></i>Alternar modo oscuro
+    </a>
+  </li>
+</div>
+
+<script>
+  // Dark Mode
+  const dark_mode_btn = document.getElementById('btn-toggle-dark-theme');
+
+  // Saving in Local Storage
+  const currentTheme = localStorage.getItem('trasmoz-theme');
+  if (currentTheme == "light") {
+    document.body.classList.remove('dark-theme');
+  }
+
+  dark_mode_btn.addEventListener('click', function() {
+    document.body.classList.toggle('dark-theme');
+
+    // Saving in Local Storage
+    let theme = 'light';
+    if (document.body.classList.contains('dark-theme')) {
+      theme = 'dark';
+    }
+    localStorage.setItem('trasmoz-theme', theme);
+  })
+</script>
