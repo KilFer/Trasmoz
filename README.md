@@ -95,14 +95,6 @@ Your site navigation items, markup template below.
 </li>
 ```
 
-## Roadmap
-
-Many features listed here still depend on future implementations in Ghost, take a look at the their [Roadmap](https://github.com/tryghost/ghost/wiki/Roadmap) and [Planned features](https://github.com/tryghost/ghost/wiki/Planned-Features).
-
-- [ ] Cover image for single post
-- [ ] Infinite scroll
-- [ ] Next post cover
-
 ## Contributing
 
 If you want to help, please read the [Contributing](https://github.com/KilFer/trasmoz/blob/master/CONTRIBUTING.md) guide.
